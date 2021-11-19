@@ -5,10 +5,16 @@ const app = express();
 
 const db = require('./configs/db.config');
 const authController = require('./controllers/auth.controller');
+const adminController = require('./controllers/admin.controller');
+const userController = require('./controllers/user.controller');
+const storeController = require('./controllers/store.controller');
 
 app.use(express.json());
 
 app.use('/auth', authController);
+app.use('/admin', adminController);
+app.use('/user', userController);
+app.use('/store', storeController);
 
 var pusher = new Pusher({
   appId: 'APP_ID',
