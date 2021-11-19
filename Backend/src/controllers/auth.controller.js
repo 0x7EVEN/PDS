@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const express = require('express');
 const router = express.Router();
 
-const Users = require('../models/user.model');
+const User = require('../models/user.model');
 
 const generateToken = ({ _id, aadhaar }) => {
   const user = { id: _id, aadhaar: aadhaar };
@@ -11,11 +11,11 @@ const generateToken = ({ _id, aadhaar }) => {
 
 router.post('/register', async (req, res) => {
   try {
-    let user = await Users.create(req.body);
+    let user = await User.create(req.body);
     user = user.toJSON();
     delete user.password;
 
-    const token = await generateToken(user);
+    const token = generateToken(user);
 
     return res.status(200).json({ token: token, user: user });
   } catch (e) {
@@ -27,7 +27,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const user = await Users.findOne({ aadhaar: req.body.aadhaar })
+    const user = await User.findOne({ aadhaar: req.body.aadhaar })
       .lean()
       .exec();
 
@@ -38,7 +38,7 @@ router.post('/login', async (req, res) => {
     }
 
     // create a token
-    const token = await generateToken(user);
+    const token = generateToken(user);
     return res.status(200).json({ user: user, token: token });
   } catch (e) {
     return res.status(500).json({ message: 'Something went wrong!' });
