@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect } from "react";
 import { useParams } from "react-router";
 import styled from "styled-components";
 
@@ -65,7 +67,7 @@ const Cont = styled.div`
 `;
 
 export default function Store() {
-    const { id } = useParams();
+    const obj = useParams();
 
     return (
         <Cont>

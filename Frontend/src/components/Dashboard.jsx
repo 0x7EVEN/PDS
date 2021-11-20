@@ -147,7 +147,7 @@ export default function Dashboard() {
                     {stores.map((el) => (
                         <div className="store">
                             <h3>{el.name}</h3>
-                            <Link to={`/store/store1`}>
+                            <Link to={`/store/${el._id}`}>
                                 <button>Visit</button>
                             </Link>
                         </div>
