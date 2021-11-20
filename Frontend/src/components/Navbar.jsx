@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { loadData, removeItem } from "../utils/localStorage";
+import { AuthContext } from "../contexts/AuthContestProvider";
 
 const Container = styled.header`
     position: fixed;
@@ -91,11 +93,8 @@ const Container = styled.header`
 `;
 
 export default function Navbar() {
-    const [user, setUser] = useState(false);
+    const { user, handleLogout } = useContext(AuthContext);
 
-    const handleLogout = () => {
-        setUser(undefined);
-    };
     return (
         <Container>
             <div className="cont">
