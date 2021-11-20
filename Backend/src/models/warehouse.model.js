@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
 
-// central block
 const warehouseSchema = mongoose.Schema(
   {
-    item: { type: String, required: true },
-    unused: { type: String, required: true },
-    filledDate: { type: String, required: true },
+    city: { type: String, required: true },
+    items: [
+      {
+        name: { type: String, required: true },
+        unused: { type: String, required: true },
+        fulfilled: { type: String, required: true },
+      },
+    ],
   },
   {
     versionKey: false,

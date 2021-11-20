@@ -33,6 +33,11 @@ const userSchema = mongoose.Schema(
       {
         name: { type: String, required: true },
         quantity: { type: String, required: true },
+        store: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'store',
+          required: true,
+        },
       },
     ],
   },
