@@ -6,7 +6,7 @@ const Store = require("../models/store.model");
 
 router.get("/:storeId", async function(req, res) {
      try {
-          const store = await Store.findById(req.params.storeId).lean().exec();
+          const store = await Store.findById(req.params.storeId);
           return res.status(200).json({store});
      } catch (e) {
           console.log(e.message);
