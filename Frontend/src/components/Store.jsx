@@ -1,7 +1,9 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import styled from "styled-components";
+import { AuthContext } from "../contexts/AuthContestProvider";
+import StoreItem from "./StoreItem";
 
 const Cont = styled.div`
     padding-top: 70px;
@@ -66,8 +68,50 @@ const Cont = styled.div`
     }
 `;
 
+const initStore = {
+    rice: 0,
+    wheat: 0,
+    jaggery: 0,
+    oil: 0,
+};
+
 export default function Store() {
-    const obj = useParams();
+    const { id } = useParams();
+    const [store, setStore] = useState({});
+    const [form, setForm] = useState(initStore);
+    const { user, handleCart } = useContext(AuthContext);
+    let price = {
+        rice: 1,
+        wheat: 1,
+        jaggery: 1,
+        oil: 1,
+    };
+
+    user.quota.map((el) => {
+        const name = el.name.toLowerCase();
+        const value = Number(el.price.split("/kg")[0]);
+        price = {
+            ...price,
+            [name]: value,
+        };
+        return el;
+    });
+
+    const handleChange = (e) => {
+        const { value, name } = e.target;
+        setForm({ ...form, [name.toLowerCase()]: Number(value) });
+    };
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/store/${id}`).then((res) => {
+            setStore(res.data.store);
+        });
+    }, []);
+
+    const handleAddToCart = (item) => {
+        const cartItem = { store: id, ...item };
+        handleCart(cartItem);
+    };
 
     return (
         <Cont>
@@ -80,25 +124,18 @@ export default function Store() {
                     <th>Price</th>
                     <th>Add to Cart</th>
                 </tr>
-                <tr>
-                    <td>
-                        {" "}
-                        <img
-                            src="https://img.etimg.com/thumb/width-640,height-480,imgsize-263761,resizemode-1,msid-74742498/news/economy/agriculture/rice-export-from-india-to-ride-rabi-harvest-global-price/rice-agencies.jpg"
-                            alt=""
+                {store &&
+                    store.inventory &&
+                    store.inventory.map((el) => (
+                        <StoreItem
+                            el={el}
+                            handleChange={handleChange}
+                            form={form}
+                            handleAddToCart={handleAddToCart}
+                            price={price}
+                            id={id}
                         />
-                        <br />
-                        Rice
-                    </td>
-                    <td>Available</td>
-                    <td>
-                        <input min={0} type="number" />{" "}
-                    </td>
-                    <td>XYZ RS</td>
-                    <td>
-                        <button>Add</button>
-                    </td>
-                </tr>
+                    ))}
             </table>
         </Cont>
     );
