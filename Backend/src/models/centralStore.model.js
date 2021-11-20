@@ -19,3 +19,5 @@ const centralStoreSchema = new mongoose.Schema(
           versionKey: false
      }
 );
+
+module.exports = mongoose.model("centralStore", centralStoreSchema);
