@@ -16,6 +16,8 @@ const locationSchema = new mongoose.Schema({
 });
 
 
+module.exports = mongoose.model("location", locationSchema);
+
 /**
  * virtual property for collecting distance from user ... can be added
  *
