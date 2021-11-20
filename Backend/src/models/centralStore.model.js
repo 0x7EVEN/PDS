@@ -10,7 +10,7 @@ const centralStoreSchema = new mongoose.Schema(
      {
           subStoreId: {type: String},
           currentStatus: {type: String},
-          Weight: {type: Number},
+          weight: {type: Number},
           check: [
                {status: {type: String}}
           ],
