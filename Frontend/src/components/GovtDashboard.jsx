@@ -79,7 +79,7 @@ const GovtDashboard = () => {
             </select>
 
             {state.length > 0 && city.length > 0 && storeDetails && (
-                <div className="container border">
+                <div className="container">
                     <div className="row text-start padding-y-5">
                         <h1>Dash Board</h1>
                     </div>

@@ -69,6 +69,10 @@ const Container = styled.header`
         margin-right: 14px;
     }
 
+    .buttons > a {
+        margin: 0px 10px;
+    }
+
     .log {
         font-size: 1rem;
         white-space: nowrap;
@@ -76,6 +80,18 @@ const Container = styled.header`
         padding: 8px 16px;
         border-radius: 0.375rem;
         background-color: #3b49df;
+        color: white;
+        font-weight: 500;
+        line-height: 1.5rem;
+    }
+
+    .log-name {
+        font-size: 1rem;
+        white-space: nowrap;
+        margin-right: 8px;
+        padding: 8px 16px;
+        border-radius: 0.375rem;
+        background-color: black;
         color: white;
         font-weight: 500;
         line-height: 1.5rem;
@@ -103,6 +119,12 @@ export default function Navbar() {
                 </Link>
 
                 <div className="buttons">
+                    <Link className="log-name" to="/cart">
+                        {user.name}
+                    </Link>
+                    <Link className="log" to="/cart">
+                        Cart
+                    </Link>
                     {!user ? (
                         <Link to="/login" className="log">
                             Log in
