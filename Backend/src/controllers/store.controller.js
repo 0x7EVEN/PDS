@@ -32,4 +32,13 @@ router.get('/nearby', async (req, res) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+  try {
+    const store = await Store.findById(req.params.id).lean().exec();
+    return res.status(200).json({ store: store });
+  } catch (e) {
+    return res.status(500).json({ message: 'Error while getting single store!' });
+  }
+})
+
 module.exports = router;
