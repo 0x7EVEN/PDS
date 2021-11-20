@@ -163,7 +163,6 @@ export default function Cart() {
                             </h4>
                         </div>
                         <div className="offset-4 col-4">
-                            {/* <div className=""></div> */}
                             {/* <Link to="/success"> */}
                             <button
                                 onClick={handlePurchase}
