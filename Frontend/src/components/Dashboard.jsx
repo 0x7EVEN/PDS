@@ -101,7 +101,7 @@ const Container = styled.div`
 
 export default function Dashboard() {
     const [stores, setStores] = useState([]);
-    const { token } = useContext(AuthContext);
+    const { token, storeAdd } = useContext(AuthContext);
     const [quota, setQuota] = useState([]);
 
     useEffect(() => {
@@ -113,6 +113,7 @@ export default function Dashboard() {
             })
             .then((res) => {
                 setStores(res.data.stores);
+                storeAdd(res.data.stores);
             });
 
         axios
@@ -123,7 +124,6 @@ export default function Dashboard() {
             })
             .then((res) => {
                 setQuota(res.data.user.quota);
-                console.log(res.data.user.quota);
             });
     }, [token]);
 

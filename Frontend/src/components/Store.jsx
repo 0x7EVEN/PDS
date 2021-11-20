@@ -83,6 +83,7 @@ export default function Store() {
     const [store, setStore] = useState({});
     const [form, setForm] = useState(initStore);
     const { user, handleCart } = useContext(AuthContext);
+
     let price = {
         rice: 1,
         wheat: 1,

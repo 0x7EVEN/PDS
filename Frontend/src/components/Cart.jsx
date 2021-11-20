@@ -78,7 +78,7 @@ const Cont = styled.div`
 `;
 
 export default function Cart() {
-    const { cart, token } = useContext(AuthContext);
+    const { cart, token, store } = useContext(AuthContext);
 
     const handlePurchase = () => {
         const item = {
@@ -128,22 +128,29 @@ export default function Cart() {
                             </div>
                         </div>
                         <div className="col-12 table-items">
-                            {cart.map((e) => (
-                                <div className="row">
-                                    <div className="col-4 py-2 border">
-                                        {e.name}
+                            {cart.map((e) => {
+                                const [{ name }] = store.filter(
+                                    (el) => e.store === el._id
+                                );
+
+                                return (
+                                    <div className="row">
+                                        <div className="col-4 py-2 border">
+                                            {e.name.charAt(0).toUpperCase() +
+                                                e.name.substr(1).toLowerCase()}
+                                        </div>
+                                        <div className="col-4 py-2 border">
+                                            {name}
+                                        </div>
+                                        <div className="col-2 py-2 border">
+                                            {e.quantity}
+                                        </div>
+                                        <div className="col-2 py-2 border">
+                                            {e.price}
+                                        </div>
                                     </div>
-                                    <div className="col-4 py-2 border">
-                                        {e.store}
-                                    </div>
-                                    <div className="col-2 py-2 border">
-                                        {e.quantity}
-                                    </div>
-                                    <div className="col-2 py-2 border">
-                                        {e.price}
-                                    </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
 
