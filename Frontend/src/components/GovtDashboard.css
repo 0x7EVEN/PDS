@@ -2,6 +2,13 @@
     padding-top: 5%;
 }
 
+.table-head {
+    background-color: #3b49df;
+    color: white;
+    font-weight: 700;
+    border: 1px solid black;
+}
+
 .blue-button {
     border: none;
     background-color: #4749ef;

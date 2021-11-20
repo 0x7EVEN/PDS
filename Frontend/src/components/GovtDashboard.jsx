@@ -85,7 +85,7 @@ const GovtDashboard = () => {
                     </div>
                     <div className="row m-0 p-0">
                         <div className="col-12 border">
-                            <div className="row border">
+                            <div className="row border table-head">
                                 <div className="col-2 border py-2">
                                     Store Name
                                 </div>
@@ -115,7 +115,7 @@ const GovtDashboard = () => {
                             {storeDetails.map((e, i) => (
                                 <div>
                                     {e.inventory.map((inv) => (
-                                        <div className="row">
+                                        <div className="row ">
                                             <div className="col-2 py-2 border">
                                                 {e.name}
                                             </div>
