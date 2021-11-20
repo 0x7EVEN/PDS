@@ -8,9 +8,39 @@ const Cont = styled.div`
     .App {
         font-family: sans-serif;
         text-align: center;
+        margin-top: 100px;
     }
+
+    .table-head {
+        background-color: #3b49df;
+        color: white;
+        font-weight: 700;
+        border: 1px solid black;
+    }
+
+    .table-head > div {
+        border: 1px solid black;
+    }
+
+    .table-items > div:nth-child(even) {
+        background-color: #3b49df24;
+    }
+
+    button {
+        border-radius: 5px;
+    }
+
+    button:hover {
+        background: #323ebe;
+    }
+
+    .text-start > h1 {
+        text-align: center;
+    }
+
     .padding-y-5 {
         padding-top: 5%;
+        padding: 30px;
     }
 
     .blue-button {
@@ -22,6 +52,8 @@ const Cont = styled.div`
 
     .color-theme {
         color: #4749ef;
+        font-weight: 700;
+        padding-top: 10px;
     }
     .sub-ware {
         /* width: 25%; */
@@ -87,21 +119,15 @@ export default function Cart() {
                         <h1>Cart</h1>
                     </div>
                     <div className="row m-0 p-0">
-                        <div className="col-12 border">
-                            <div className="row border">
-                                <div className="col-4 border py-2">
-                                    Prodcut Name
-                                </div>
-                                <div className="col-4 border py-2">
-                                    Store Name
-                                </div>
-                                <div className="col-2 border py-2">
-                                    Quantity
-                                </div>
-                                <div className="col-2 border py-2">Price</div>
+                        <div className="col-12">
+                            <div className="row table-head">
+                                <div className="col-4 py-2">Prodcut Name</div>
+                                <div className="col-4 py-2">Store Name</div>
+                                <div className="col-2 py-2">Quantity</div>
+                                <div className="col-2 py-2">Price</div>
                             </div>
                         </div>
-                        <div className="col-12">
+                        <div className="col-12 table-items">
                             {cart.map((e) => (
                                 <div className="row">
                                     <div className="col-4 py-2 border">

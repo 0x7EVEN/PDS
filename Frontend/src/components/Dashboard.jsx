@@ -4,11 +4,17 @@ import { useContext, useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { AuthContext } from "../contexts/AuthContestProvider";
+import { Slideshow } from "./Slideshow";
 
 const Container = styled.div`
-    padding-top: 70px;
+    padding-top: 50px;
     background-color: #f0f2f5;
-    height: 100vh;
+    padding-bottom: 50px;
+
+    h1 {
+        text-align: center;
+        margin: 30px 0px 20px 0px;
+    }
 
     a {
         color: inherit;
@@ -33,14 +39,14 @@ const Container = styled.div`
         }
 
         th {
-            background-color: black;
+            background-color: #3b49df;
             color: white;
             font-size: 1rem;
             text-align: center;
         }
 
         tr:nth-child(even) {
-            background-color: #dddddd;
+            background-color: #3b49df24;
         }
     }
 
@@ -54,7 +60,7 @@ const Container = styled.div`
         text-align: center;
         width: 30%;
         margin: auto;
-        margin-top: 100px;
+        margin-top: 70px;
     }
 
     .store {
@@ -78,7 +84,7 @@ const Container = styled.div`
         margin-right: 8px;
         padding: 8px 16px;
         border-radius: 0.375rem;
-        background-color: green;
+        background-color: #3b49df;
         color: white;
         font-weight: 500;
         line-height: 1.5rem;
@@ -89,7 +95,7 @@ const Container = styled.div`
     }
 
     button:hover {
-        background-color: #02a802;
+        background-color: #323ebe;
     }
 `;
 
@@ -123,6 +129,8 @@ export default function Dashboard() {
 
     return (
         <Container>
+            <h1 className="head">PUBLIC DISTRIBUTION SYSTEM</h1>
+            {Slideshow()}
             <div className="month-cost">
                 <h1>Ration Cost for the Month</h1>
                 <table>

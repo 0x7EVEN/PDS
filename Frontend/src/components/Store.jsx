@@ -8,6 +8,9 @@ import StoreItem from "./StoreItem";
 const Cont = styled.div`
     padding-top: 70px;
     text-align: center;
+    h1 {
+        margin: 40px 0px;
+    }
 
     table {
         font-family: arial, sans-serif;
@@ -29,7 +32,7 @@ const Cont = styled.div`
             margin-right: 8px;
             padding: 8px 16px;
             border-radius: 0.375rem;
-            background-color: orange;
+            background-color: #3b49df;
             color: white;
             font-weight: 500;
             line-height: 1.5rem;
@@ -39,7 +42,7 @@ const Cont = styled.div`
         }
 
         button:hover {
-            background-color: #ffbd41;
+            background-color: #323ebe;
         }
     }
 
@@ -57,14 +60,14 @@ const Cont = styled.div`
     }
 
     th {
-        background-color: black;
+        background-color: #3b49df;
         color: white;
         font-size: 1rem;
         text-align: center;
     }
 
     tr:nth-child(even) {
-        background-color: #dddddd;
+        background-color: #3b49df24;
     }
 `;
 
