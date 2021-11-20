@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import { AuthContext } from "../contexts/AuthContestProvider";
 
 const Container = styled.div`
     padding-top: 70px;
@@ -90,6 +94,33 @@ const Container = styled.div`
 `;
 
 export default function Dashboard() {
+    const [stores, setStores] = useState([]);
+    const { token, user } = useContext(AuthContext);
+    const [quota, setQuota] = useState([]);
+
+    useEffect(() => {
+        axios
+            .get("http://localhost:8080/user/nearby", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((res) => {
+                setStores(res.data.stores);
+            });
+
+        axios
+            .get("http://localhost:8080/user", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((res) => {
+                setQuota(res.data.user.quota);
+                console.log(res.data.user.quota);
+            });
+    }, [token]);
+
     return (
         <Container>
             <div className="month-cost">
@@ -97,42 +128,30 @@ export default function Dashboard() {
                 <table>
                     <tr>
                         <th>Product</th>
-                        <th>Max Quantity</th>
+                        <th>Remaining Quantity</th>
                         <th>Price/KG</th>
                     </tr>
-                    <tr>
-                        <td>Rice</td>
-                        <td>10 KG</td>
-                        <td>₹50</td>
-                    </tr>
-                    <tr>
-                        <td>Wheat</td>
-                        <td>10 KG</td>
-                        <td>₹50</td>
-                    </tr>
-                    <tr>
-                        <td>Kerosene</td>
-                        <td>10 KG</td>
-                        <td>₹50</td>
-                    </tr>
+                    {quota.map((el) => (
+                        <tr>
+                            <td>{el.name}</td>
+                            <td>{el.remaining} / 30kg</td>
+                            <td>{el.price}</td>
+                        </tr>
+                    ))}
                 </table>
             </div>
 
             <div className="stores">
                 <h1>Nearby Stores</h1>
                 <div className="store-items">
-                    <div className="store">
-                        <h3>STORE NAME 1</h3>
-                        <Link to={`/store/store1`}>
-                            <button>Visit</button>
-                        </Link>
-                    </div>
-                    <div className="store">
-                        <h3>STORE NAME 2</h3>
-                        <Link to={`/store/store2`}>
-                            <button>Visit</button>
-                        </Link>
-                    </div>
+                    {stores.map((el) => (
+                        <div className="store">
+                            <h3>{el.name}</h3>
+                            <Link to={`/store/store1`}>
+                                <button>Visit</button>
+                            </Link>
+                        </div>
+                    ))}
                 </div>
             </div>
         </Container>
