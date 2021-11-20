@@ -14,6 +14,7 @@ const router = express.Router();
 router.get("/:id", async function(req, res) {
      try {
           //
+          const id = req.params.id;
           const user = await User.findById(id);
           return res.status(200).json({user: user});
      } catch (e) {
@@ -28,6 +29,7 @@ router.get("/:id", async function(req, res) {
 router.post("/:id", async function(req, res) {
      try {
           //
+          const id = req.params.id;
           const user = await User.findByIdAndUpdate(id, {
                ...req.body
           });
