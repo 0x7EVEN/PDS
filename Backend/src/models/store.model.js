@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const storeSchema = mongoose.Schema(
     {
         name: { type: String, required: true },
-        // capacity: {type: String, required: true},
         inventory: [
             {
                 name: { type: String, required: true },
