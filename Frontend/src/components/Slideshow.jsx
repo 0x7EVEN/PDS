@@ -30,6 +30,10 @@ const Slideshow = () => {
                         key: 3,
                         src: "https://post.healthline.com/wp-content/uploads/2020/08/parboiled-rice-1200x628-facebook-1200x628.jpg",
                     },
+                    {
+                        key: 4,
+                        src: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/sugar-explained-granulated-and-cubed-in-bowls-1b72cc9.jpg?quality=90&resize=620%2C310",
+                    },
                 ]}
             />
         </Cont>

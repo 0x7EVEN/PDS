@@ -26,6 +26,10 @@ const Cont = styled.div`
         background-color: #3b49df24;
     }
 
+    .container {
+        padding: 40px;
+    }
+
     button {
         border-radius: 5px;
     }
