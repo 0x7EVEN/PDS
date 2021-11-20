@@ -4,9 +4,7 @@ const mongoose = require('mongoose');
 const centralSchema = mongoose.Schema(
   {
     // availableStock: [{ name: String, quantity: String }],
-    // stores: [
-    //   { type: mongoose.Schema.Types.ObjectId, ref: 'store', required: true },
-    // ],
+    stores: [{ type: mongoose.Schema.Types.ObjectId, ref: 'store' }],
   },
   {
     versionKey: false,
