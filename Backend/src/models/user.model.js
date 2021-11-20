@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema(
   {
-    name: { type: String, required: true },
-    aadhaar: { type: String, required: true, unique: true },
-    wallet: { type: Number, required: true },
-    cart: [{ type: String, quantity: String }],
+    name: {type: String, required: true},
+    aadhaar: {type: String, required: true, unique: true},
+    wallet: {type: Number, required: true},
+    cart: [{type: String, quantity: String}],
   },
   {
     versionKey: false,

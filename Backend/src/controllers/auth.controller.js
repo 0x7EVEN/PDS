@@ -4,9 +4,9 @@ const router = express.Router();
 
 const User = require('../models/user.model');
 
-const generateToken = ({ _id, aadhaar }) => {
-  const user = { id: _id, aadhaar: aadhaar };
-  return jwt.sign({ user }, process.env.JWT_SECRET_KEY);
+const generateToken = ({_id, aadhaar}) => {
+  const user = {id: _id, aadhaar: aadhaar};
+  return jwt.sign({user}, process.env.JWT_SECRET_KEY);
 };
 
 router.post('/register', async (req, res) => {
@@ -17,31 +17,31 @@ router.post('/register', async (req, res) => {
 
     const token = generateToken(user);
 
-    return res.status(200).json({ token: token, user: user });
+    return res.status(200).json({token: token, user: user});
   } catch (e) {
     return res
       .status(500)
-      .json({ message: 'Something went wrong while creating new user' });
+      .json({message: 'Something went wrong while creating new user'});
   }
 });
 
 router.post('/login', async (req, res) => {
   try {
-    const user = await User.findOne({ aadhaar: req.body.aadhaar })
+    const user = await User.findOne({aadhaar: req.body.aadhaar})
       .lean()
       .exec();
 
     if (!user) {
       return res
         .status(400)
-        .json({ message: 'Your aadhaar number is not correct!' });
+        .json({message: 'Your aadhaar number is not correct!'});
     }
 
     // create a token
     const token = generateToken(user);
-    return res.status(200).json({ user: user, token: token });
+    return res.status(200).json({user: user, token: token});
   } catch (e) {
-    return res.status(500).json({ message: 'Something went wrong!' });
+    return res.status(500).json({message: 'Something went wrong!'});
   }
 });
 
