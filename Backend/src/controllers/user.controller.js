@@ -6,6 +6,19 @@ const Store = require('../models/store.model');
 
 const router = express.Router();
 
+router.get('/', protect, async (req, res) => {
+  try {
+    const user = await User.findOne({ aadhaar: req.user.aadhaar })
+      .lean()
+      .exec();
+    return res.status(200).json({ user: user });
+  } catch (e) {
+    return res
+      .status(500)
+      .json({ message: 'Error while getting user details!' });
+  }
+});
+
 router.get('/nearby', protect, async (req, res) => {
   try {
     const user = await User.findOne({ aadhaar: req.user.aadhaar });
@@ -78,7 +91,7 @@ router.post('/checkout', protect, async (req, res) => {
     // Now update store's data
     let store = await Store.findById(req.body.store);
 
-		const updateInventory = store.inventory.map(({ name, remaining, used }) => {
+    const updateInventory = store.inventory.map(({ name, remaining, used }) => {
       let captureRemaining = Number(remaining.split('kg')[0]);
       let captureUsed = Number(used.split('kg')[0]);
       const newItem = {
@@ -95,7 +108,6 @@ router.post('/checkout', protect, async (req, res) => {
 
       return newItem;
     });
-
 
     store = await Store.findByIdAndUpdate(
       req.body.store,
