@@ -42,7 +42,9 @@ router.post('/checkout', protect, async (req, res) => {
       const captureUsed = Number(used.split('kg')[0]);
       const capturePrice = Number(price.split('/kg')[0]);
 
-      const value = Number(transaction[name]?.split('kg')[0]);
+      // const value = Number(transaction[name]?.split('kg')[0]);
+      const value = Number(transaction[name].split('kg')[0]);
+
 
       const updatedItem = {
         name: name,
@@ -87,7 +89,9 @@ router.post('/checkout', protect, async (req, res) => {
         used: used,
       };
 
-      const value = Number(transaction[name]?.split('kg')[0]);
+      // const value = Number(transaction[name]?.split('kg')[0]);
+      const value = Number(transaction[name].split('kg')[0]);
+
       if (value) {
         newItem['remaining'] = String(captureRemaining - value) + 'kg';
         newItem['used'] = String(captureUsed + value) + 'kg';
