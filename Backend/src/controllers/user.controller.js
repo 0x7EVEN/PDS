@@ -6,6 +6,32 @@ const Store = require('../models/store.model');
 
 const router = express.Router();
 
+router.get('/', protect, async (req, res) => {
+  try {
+    const user = await User.findOne({ aadhaar: req.user.aadhaar })
+      .lean()
+      .exec();
+    return res.status(200).json({ user: user });
+  } catch (e) {
+    return res
+      .status(500)
+      .json({ message: 'Error while getting user details!' });
+  }
+});
+
+router.post('/cart', protect, async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      { $addToSet: { cart: req.body } },
+      { new: true }
+    );
+    return res.status(200).json({ message: 'Success!', user: user });
+  } catch (e) {
+    return res.status(500).json({ message: 'Error while adding to cart...' });
+  }
+});
+
 router.get('/nearby', protect, async (req, res) => {
   try {
     const user = await User.findOne({ aadhaar: req.user.aadhaar });
@@ -71,6 +97,7 @@ router.post('/checkout', protect, async (req, res) => {
       { new: true }
     );
 
+
     if (!user) {
       return res
         .status(500)
@@ -80,26 +107,26 @@ router.post('/checkout', protect, async (req, res) => {
     // Now update store's data
     let store = await Store.findById(req.body.store);
 
-		const updateInventory = store.inventory.map(({ name, remaining, used }) => {
-      let captureRemaining = Number(remaining.split('kg')[0]);
-      let captureUsed = Number(used.split('kg')[0]);
-      const newItem = {
-        name: name,
-        remaining: remaining,
-        used: used,
-      };
+    const updateInventory = store.inventory.map(
+      ({ name, remaining, img, used }) => {
+        let captureRemaining = Number(remaining.split('kg')[0]);
+        let captureUsed = Number(used.split('kg')[0]);
+        const newItem = {
+          name: name,
+          img: img,
+          remaining: remaining,
+          used: used,
+        };
 
-      // const value = Number(transaction[name]?.split('kg')[0]);
-      const value = Number(transaction[name].split('kg')[0]);
+        const value = Number(transaction[name]?.split('kg')[0]);
+        if (value) {
+          newItem['remaining'] = String(captureRemaining - value) + 'kg';
+          newItem['used'] = String(captureUsed + value) + 'kg';
+        }
 
-      if (value) {
-        newItem['remaining'] = String(captureRemaining - value) + 'kg';
-        newItem['used'] = String(captureUsed + value) + 'kg';
+        return newItem;
       }
-
-      return newItem;
-    });
-
+    );
 
     store = await Store.findByIdAndUpdate(
       req.body.store,
@@ -115,6 +142,7 @@ router.post('/checkout', protect, async (req, res) => {
       store: store,
     });
   } catch (e) {
+    console.log(e.message);
     return res.status(500).json({ message: 'Error while checking out...' });
   }
 });
