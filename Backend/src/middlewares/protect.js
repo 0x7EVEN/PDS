@@ -12,7 +12,9 @@ const verifyToken = (token) => {
 
 const protect = async (req, res, next) => {
   // get the token
-  const bearer = req?.headers?.authorization;
+  // const bearer = req?.headers?.authorization;
+  const bearer = req.headers.authorization;
+
   if (!bearer || !bearer.startsWith('Bearer')) {
     return res.status(401).json({ message: 'No token present' });
   }
