@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import { Navigate } from "react-router-dom";
+import axios from "axios";
+import { AuthContext } from "../contexts/AuthContestProvider";
 
 const Container = styled.div`
     height: 525px;
@@ -49,7 +51,7 @@ const Form = styled.form`
 
         img {
             position: absolute;
-            width: 35px;
+            width: 30px;
             margin-left: 5px;
             margin-top: 3px;
         }
@@ -132,11 +134,22 @@ export default function Login() {
     const [otp, setOtp] = useState("");
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
+    const { handleLogin } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (otp === random) {
-            //log-in successful
+            axios
+                .post("http://localhost:8080/auth/login", {
+                    aadhaar: text,
+                })
+                .then((res) => {
+                    handleLogin(res.data.user, res.data.token);
+                })
+                .catch((e) => {
+                    console.log(e.message);
+                });
+
             setSuccess(true);
         } else {
             alert("Invalid OTP");
@@ -145,6 +158,7 @@ export default function Login() {
 
     const handleValidate = () => {
         //if aadhar number is legit, then proceed further
+
         setValidate(true);
         setLoading(true);
         setTimeout(() => {
@@ -180,7 +194,7 @@ export default function Login() {
                             )}
                             {!loading && validate && (
                                 <img
-                                    src="https://c.tenor.com/0AVbKGY_MxMAAAAM/check-mark-verified.gif"
+                                    src="https://www.freepnglogos.com/uploads/tick-png/image-tick-mark-icon-png-good-luck-charlie-wiki-2.png"
                                     alt=""
                                 />
                             )}
