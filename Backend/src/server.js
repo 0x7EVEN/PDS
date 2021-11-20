@@ -2,11 +2,13 @@ require('dotenv').config();
 const express = require('express');
 // const Pusher = require('pusher');
 const app = express();
+app.use(express.json());
 
 const db = require('./configs/db.config');
 const authController = require('./controllers/auth.controller');
-
-app.use(express.json());
+const locationController = require("./controllers/location.controller");
+const storeController = require("./controllers/store.controller");
+const userController = require("./controllers/user.controller");
 
 app.use('/auth', authController);
 
