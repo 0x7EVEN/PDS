@@ -59,15 +59,12 @@ const GovtDashboard = () => {
         >
             <h2>Choose Location</h2>
 
-            <select
-                style={{ marginBottom: "50px" }}
-                onChange={(e) => setState(e.target.value)}
-            >
-                <option value="">--- Choose State ---</option>
-                <option value="uttar pradesh"> Uttar Pradesh </option>
-                <option value="Gujarat"> Gujarat </option>
+            <select onChange= {(e)=>setState(e.target.value)}>
+              <option  value = '' >--- Choose State ---</option>
+              <option value = 'uttar pradesh'> Uttar Pradesh </option>
+              <option value = 'gujarat'> Gujarat </option>
             </select>
-
+            
             <select onChange={(e) => setCity(e.target.value)}>
                 <option value="">--- Choose City ---</option>
                 {cityData?.map((el) => (

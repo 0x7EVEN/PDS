@@ -23,6 +23,7 @@ export const AuthContextProvider = ({ children }) => {
         removeItem("token");
         removeItem("cart");
         removeItem("store");
+        setCart([]);
         setUser(undefined);
         setToken("");
     };
