@@ -10,7 +10,7 @@ const router = express.Router();
  *  */
 
 
-
+//not sure about route endpoint
 router.get("/:id", async function(req, res) {
      try {
           //
@@ -24,7 +24,7 @@ router.get("/:id", async function(req, res) {
      }
 });
 
-
+//not sure about route endpoint
 router.post("/:id", async function(req, res) {
      try {
           //

@@ -14,3 +14,9 @@ const locationSchema = new mongoose.Schema({
      timestamps: true,
      versionKey: false
 });
+
+
+/**
+ * virtual property for collecting distance from user ... can be added
+ *
+*/
