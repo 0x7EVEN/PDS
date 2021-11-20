@@ -19,6 +19,19 @@ router.get('/', protect, async (req, res) => {
   }
 });
 
+router.post('/cart', protect, async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      { $addToSet: { cart: req.body } },
+      { new: true }
+    );
+    return res.status(200).json({ message: 'Success!', user: user });
+  } catch (e) {
+    return res.status(500).json({ message: 'Error while adding to cart...' });
+  }
+});
+
 router.get('/nearby', protect, async (req, res) => {
   try {
     const user = await User.findOne({ aadhaar: req.user.aadhaar });

@@ -22,4 +22,16 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/:city', async (req, res) => {
+  try {
+    const warehouses = await Warehouse.find({ city: req.params.city });
+    return res.status(200).json({ warehouses: warehouses });
+  } catch (e) {
+    console.log('error: ', e.message);
+    return res
+      .status(500)
+      .json({ message: 'Error while fetching warehouses!' });
+  }
+});
+
 module.exports = router;
