@@ -95,7 +95,7 @@ const Container = styled.div`
 
 export default function Dashboard() {
     const [stores, setStores] = useState([]);
-    const { token, user } = useContext(AuthContext);
+    const { token } = useContext(AuthContext);
     const [quota, setQuota] = useState([]);
 
     useEffect(() => {
@@ -145,7 +145,7 @@ export default function Dashboard() {
                 <h1>Nearby Stores</h1>
                 <div className="store-items">
                     {stores.map((el) => (
-                        <div className="store">
+                        <div key={el._id} className="store">
                             <h3>{el.name}</h3>
                             <Link to={`/store/${el._id}`}>
                                 <button>Visit</button>
