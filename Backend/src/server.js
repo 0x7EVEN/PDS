@@ -11,7 +11,12 @@ const storeController = require("./controllers/store.controller");
 const userController = require("./controllers/user.controller");
 
 app.use('/auth', authController);
-
+app.use('/location', locationController);
+app.use('/store', storeController);
+app.use('/user', authController);
+app.use(function(req, res) {
+     res.send("404");
+});
 // var pusher = new Pusher({
 //      appId: 'APP_ID',
 //      key: 'APP_KEY',
