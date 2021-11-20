@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import Test from "../components/Test";
+import Login from "../components/Login";
 
 export default function Links() {
     return (
         <Routes>
-            <Route path="/" exact element={<Test />} />
+            <Route path="/" />
+            <Route path="/login" element={<Login />} />
         </Routes>
     );
 }
