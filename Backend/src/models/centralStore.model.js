@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
 
-
-
 /**
  * Date to be added in schema for each store
  * Grains
   */
+
 const centralStoreSchema = new mongoose.Schema(
      {
           subStoreId: {type: String},
@@ -20,5 +19,4 @@ const centralStoreSchema = new mongoose.Schema(
           versionKey: false
      }
 );
-
 module.exports = mongoose.model("centralStore", centralStoreSchema);
