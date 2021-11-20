@@ -49,7 +49,7 @@ const Form = styled.form`
 
         img {
             position: absolute;
-            width: 35px;
+            width: 30px;
             margin-left: 5px;
             margin-top: 3px;
         }
@@ -180,7 +180,7 @@ export default function Login() {
                             )}
                             {!loading && validate && (
                                 <img
-                                    src="https://c.tenor.com/0AVbKGY_MxMAAAAM/check-mark-verified.gif"
+                                    src="https://www.freepnglogos.com/uploads/tick-png/image-tick-mark-icon-png-good-luck-charlie-wiki-2.png"
                                     alt=""
                                 />
                             )}

@@ -7,6 +7,8 @@ const storeSchema = mongoose.Schema(
           inventory: [
                {
                     name: {type: String, required: true},
+                    supplied: {type: String, required: true},
+                    received: {type: String, required: true},
                     remaining: {type: String, required: true},
                     used: {type: String, required: true},
                     // price: { type: String, required: true },
