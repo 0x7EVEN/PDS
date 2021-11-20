@@ -1,35 +1,29 @@
 require('dotenv').config();
 const express = require('express');
-// const Pusher = require('pusher');
 const app = express();
 app.use(express.json());
 
 const db = require('./configs/db.config');
 const authController = require('./controllers/auth.controller');
-const locationController = require("./controllers/location.controller");
-const storeController = require("./controllers/store.controller");
-const userController = require("./controllers/user.controller");
+const centralController = require('./controllers/central.controller');
+const userController = require('./controllers/user.controller');
+const storeController = require('./controllers/store.controller');
+const warehouseController = require('./controllers/warehouse.controller');
+
+app.use(express.json());
 
 app.use('/auth', authController);
-app.use('/location', locationController);
+app.use('/central', centralController);
+app.use('/user', userController);
 app.use('/store', storeController);
-app.use('/user', authController);
-app.use(function(req, res) {
-     res.send("404");
-});
-// var pusher = new Pusher({
-//      appId: 'APP_ID',
-//      key: 'APP_KEY',
-//      secret: 'APP_SECRET',
-//      cluster: 'APP_CLUSTER',
-// });
+app.use('/warehouse', warehouseController);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, async () => {
      try {
           // connect to db
           await db();
-          console.log(`Server started! port : ${PORT}`);
+          console.log('Server started!');
      } catch (e) {
           console.log('Error while connecting database');
      }
