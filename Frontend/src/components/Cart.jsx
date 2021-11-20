@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../contexts/AuthContestProvider";
 import { Link } from "react-router-dom";
@@ -44,45 +44,6 @@ const Cont = styled.div`
         border: 1px solid black;
     }
 `;
-
-const data = [
-    {
-        product_name: "Wheat",
-        store_name: "sample store",
-        quantity: "4kg",
-        price: 17,
-    },
-    {
-        product_name: "Rice",
-        store_name: "sample store1",
-        quantity: "4kg",
-        price: 34,
-    },
-    {
-        product_name: "Juggery",
-        store_name: "sample store2",
-        quantity: "4kg",
-        price: 22,
-    },
-    {
-        product_name: "Juggery",
-        store_name: "sample store2",
-        quantity: "4kg",
-        price: 22,
-    },
-    {
-        product_name: "Juggery",
-        store_name: "sample store2",
-        quantity: "4kg",
-        price: 22,
-    },
-    {
-        product_name: "Juggery",
-        store_name: "sample store2",
-        quantity: "4kg",
-        price: 22,
-    },
-];
 
 export default function Cart() {
     const { cart, token } = useContext(AuthContext);
