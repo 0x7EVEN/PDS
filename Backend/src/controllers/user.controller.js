@@ -68,7 +68,9 @@ router.post('/checkout', protect, async (req, res) => {
       const captureUsed = Number(used.split('kg')[0]);
       const capturePrice = Number(price.split('/kg')[0]);
 
-      const value = Number(transaction[name]?.split('kg')[0]);
+      // const value = Number(transaction[name]?.split('kg')[0]);
+      const value = Number(transaction[name].split('kg')[0]);
+
 
       const updatedItem = {
         name: name,
@@ -104,7 +106,6 @@ router.post('/checkout', protect, async (req, res) => {
 
     // Now update store's data
     let store = await Store.findById(req.body.store);
-    console.log('Found store!', store, 'req body store: ', req.body.store);
 
     const updateInventory = store.inventory.map(
       ({ name, remaining, img, used }) => {
