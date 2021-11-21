@@ -15,7 +15,7 @@ export default function Success() {
     useEffect(() => {
         setTimeout(() => {
             setFlag(true);
-        }, 2000);
+        }, 3000);
     }, []);
 
     if (flag) return <Navigate to="/" />;

@@ -1,7 +1,7 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { AuthContext } from '../contexts/AuthContestProvider';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Cont = styled.div`
@@ -83,6 +83,7 @@ const Cont = styled.div`
 
 export default function Cart() {
   const { cart, token, store } = useContext(AuthContext);
+  const [success, setSuccess] = useState(false);
 
   const handlePurchase = () => {
     // array of items
@@ -103,11 +104,16 @@ export default function Cart() {
       .then((el) => {
         console.log('getting data', el.data);
         localStorage.removeItem('cart');
+        setSuccess(true);
       })
       .catch((err) => {
         console.log(err.message);
       });
   };
+
+  if (success) {
+    return <Navigate to='/success' />
+  }
 
   return (
     <Cont>
@@ -148,10 +154,11 @@ export default function Cart() {
             <div className='col-4'>
               {/* <div className=""></div> */}
               <h4 className='color-theme'>
-                Total Price : {cart.reduce((a, b) => a.price + b.price)}
+                Total Price : {cart.reduce((a, {price}) => a + price, 0)}
               </h4>
             </div>
             <div className='offset-4 col-4'>
+
               {/* <Link to="/success"> */}
               <button onClick={handlePurchase} className='blue-button'>
                 Purchase
