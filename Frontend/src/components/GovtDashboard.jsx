@@ -59,12 +59,12 @@ const GovtDashboard = () => {
         >
             <h2>Choose Location</h2>
 
-            <select onChange= {(e)=>setState(e.target.value)}>
-              <option  value = '' >--- Choose State ---</option>
-              <option value = 'uttar pradesh'> Uttar Pradesh </option>
-              <option value = 'gujarat'> Gujarat </option>
+            <select onChange={(e) => setState(e.target.value)}>
+                <option value="">--- Choose State ---</option>
+                <option value="uttar pradesh"> Uttar Pradesh </option>
+                <option value="gujarat"> Gujarat </option>
             </select>
-            
+
             <select onChange={(e) => setCity(e.target.value)}>
                 <option value="">--- Choose City ---</option>
                 {cityData?.map((el) => (
@@ -86,23 +86,23 @@ const GovtDashboard = () => {
                                 <div className="col-2 border py-2">
                                     Store Name
                                 </div>
-                                <div className="col-1 border py-2">Product</div>
-                                <div className="col-1 border py-2">
+                                <div className="col-2 border py-2">Product</div>
+                                <div className="col-2 border py-2">
                                     Supply (kg)
                                 </div>
                                 <div className="col-2 border py-2">
                                     Received (kg)
                                 </div>
-                                <div className="col-2 border py-2">
+                                {/* <div className="col-2 border py-2">
                                     Dispatch Details
                                 </div>
                                 <div className="col-2 border py-2">
                                     Owner Details
-                                </div>
-                                <div className="col-1 border py-2">
+                                </div> */}
+                                <div className="col-2 border py-2">
                                     Total Purchase (kg)
                                 </div>
-                                <div className="col-1 border py-2">
+                                <div className="col-2 border py-2">
                                     Buffer (kg)
                                 </div>
                             </div>
@@ -116,25 +116,25 @@ const GovtDashboard = () => {
                                             <div className="col-2 py-2 border">
                                                 {e.name}
                                             </div>
-                                            <div className="col-1 py-2 border ">
+                                            <div className="col-2 py-2 border ">
                                                 {inv.name}
                                             </div>
-                                            <div className="col-1 py-2 border">
+                                            <div className="col-2 py-2 border">
                                                 {inv.supplied}
                                             </div>
                                             <div className="col-2 py-2 border">
                                                 {inv.received}
                                             </div>
-                                            <div className="col-2 py-2 border">
+                                            {/* <div className="col-2 py-2 border">
                                                 Dispatched
                                             </div>
                                             <div className="col-2 py-2 border">
                                                 Owner
-                                            </div>
-                                            <div className="col-1 py-2 border">
+                                            </div> */}
+                                            <div className="col-2 py-2 border">
                                                 {inv.used}
                                             </div>
-                                            <div className="col-1 py-2 border">
+                                            <div className="col-2 py-2 border">
                                                 {inv.remaining}
                                             </div>
                                         </div>

@@ -75,7 +75,7 @@ const initStore = {
     rice: 0,
     wheat: 0,
     jaggery: 0,
-    oil: 0,
+    dal: 0,
 };
 
 export default function Store() {
@@ -88,7 +88,7 @@ export default function Store() {
         rice: 1,
         wheat: 1,
         jaggery: 1,
-        oil: 1,
+        dal: 1,
     };
 
     user.quota.map((el) => {

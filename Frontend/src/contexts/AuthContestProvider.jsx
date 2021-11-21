@@ -6,6 +6,7 @@ export const AuthContext = createContext({
     handleLogout: () => {},
     handleCart: () => {},
     storeAdd: () => {},
+    setUser: () => {},
     token: "",
     user: {},
     cart: [],
@@ -55,6 +56,7 @@ export const AuthContextProvider = ({ children }) => {
         handleCart,
         storeAdd,
         store,
+        setUser,
     };
     return (
         <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
