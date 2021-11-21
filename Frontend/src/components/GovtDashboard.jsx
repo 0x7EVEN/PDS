@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./GovtDashboard.css";
+import Warehouse from "./Warehouse";
 
 const GovtDashboard = () => {
     const [state, setState] = React.useState("");
@@ -11,9 +12,9 @@ const GovtDashboard = () => {
 
     const data1 = [
         { item: "rice", unused: 80, filledDate: "20-10-2020" },
-        { item: "juggery", unused: 20, filledDate: "20-10-2020" },
+        { item: "jaggery", unused: 20, filledDate: "20-7-2020" },
         { item: "wheat", unused: 80, filledDate: "20-10-2020" },
-        { item: "rice", unused: 30, filledDate: "20-4-2020" },
+        { item: "dal", unused: 30, filledDate: "20-4-2020" },
         //   { item: "wheat", unused: 80, filledDate: "20-10-2020" },
         //   { item: "rice", unused: 80, filledDate: "20-4-2020" },
         //   { item: "wheat", unused: 40, filledDate: "20-7-2020" },
@@ -21,10 +22,14 @@ const GovtDashboard = () => {
     ];
 
     const data2 = [
-        { item: "rice", unused: 20, filledDate: "20-10-2020" },
-        { item: "juggery", unused: 50, filledDate: "20-10-2020" },
-        { item: "wheat", unused: 30, filledDate: "20-10-2020" },
-        { item: "rice", unused: 10, filledDate: "20-4-2020" },
+        { item: "rice", unused: 50, filledDate: "20-2-2020" },
+        { item: "jaggery", unused: 70, filledDate: "20-10-2020" },
+        { item: "wheat", unused: 20, filledDate: "20-4-2020" },
+        { item: "dal", unused: 60, filledDate: "20-6-2020" },
+        //   { item: "wheat", unused: 80, filledDate: "20-10-2020" },
+        //   { item: "rice", unused: 80, filledDate: "20-4-2020" },
+        //   { item: "wheat", unused: 40, filledDate: "20-7-2020" },
+        //   { item: "juggery", unused: 80, filledDate: "20-10-2020" }
     ];
 
     React.useEffect(() => {
@@ -143,72 +148,8 @@ const GovtDashboard = () => {
                             ))}
                         </div>
                     </div>
-
-                    <div className="container">
-                        <h3>WareHouse 1 Details</h3>
-                        <div className="row border-black">
-                            <div className="py-5 warehouse">
-                                {data1.map((e) => (
-                                    <div className="sub-ware my-4 text-center">
-                                        <div
-                                            className="filler"
-                                            style={{
-                                                backgroundColor:
-                                                    11 -
-                                                        e.filledDate.split(
-                                                            "-"
-                                                        )[1] <
-                                                    3
-                                                        ? "#0DCAF0"
-                                                        : 11 -
-                                                              e.filledDate.split(
-                                                                  "-"
-                                                              )[1] <
-                                                          6
-                                                        ? "yellow"
-                                                        : "red",
-                                                width: `${e.unused}%`,
-                                            }}
-                                        ></div>
-
-                                        {e.item}
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="row">
-                                <div
-                                    className="col-4"
-                                    style={{
-                                        backgroundColor: "#0DCAF0",
-                                        height: "60px",
-                                    }}
-                                >
-                                    Priority 3
-                                </div>
-
-                                <div
-                                    className="col-4"
-                                    style={{
-                                        backgroundColor: "yellow",
-                                        height: "60px",
-                                    }}
-                                >
-                                    Priority 2
-                                </div>
-
-                                <div
-                                    className="col-4"
-                                    style={{
-                                        backgroundColor: "red",
-                                        height: "60px",
-                                        alignItems: "center",
-                                    }}
-                                >
-                                    Priority 1
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <Warehouse data={data1} num={1} />
+                    <Warehouse data={data2} num={2} />
                 </div>
             )}
         </div>

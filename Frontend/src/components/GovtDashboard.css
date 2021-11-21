@@ -52,5 +52,45 @@
 }
 
 .container {
-    margin-bottom: 50px;
+    margin-bottom: 100px;
+}
+
+.App {
+    font-family: sans-serif;
+    text-align: center;
+}
+.padding-y-5 {
+    padding-top: 5%;
+}
+
+.blue-button {
+    border: none;
+    background-color: #4749ef;
+    color: white;
+    padding: 10px 20px;
+}
+
+.color-theme {
+    color: #4749ef;
+}
+.sub-ware {
+    /* width: 25%; */
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+    margin: auto;
+}
+
+.warehouse {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.filler {
+    /* border: 1px solid black; */
+    height: 198px;
+}
+
+.border-black {
+    border: 1px solid black;
 }
