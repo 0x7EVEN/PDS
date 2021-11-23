@@ -16,10 +16,7 @@ const StoreItem = ({ el, handleChange, handleAddToCart, form, price, id }) => {
     return (
         <tr key={el._id}>
             <td>
-                <img
-                    src="https://img.etimg.com/thumb/width-640,height-480,imgsize-263761,resizemode-1,msid-74742498/news/economy/agriculture/rice-export-from-india-to-ride-rabi-harvest-global-price/rice-agencies.jpg"
-                    alt=""
-                />
+                <img src={el.img} alt="" />
                 <br />
                 {el.name}
             </td>
